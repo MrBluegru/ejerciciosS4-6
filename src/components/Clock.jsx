@@ -8,18 +8,20 @@ const Clock = () => {
     apellidos: "Gru",
   });
 
+  useEffect(() => {
+    const intervalAge = setInterval(() => tick(), 1000);
+    return () => {
+      clearInterval(intervalAge);
+    };
+  });
   const tick = () => {
-    let edad = user.edad + 1;
-    setUser({
-      ...user,
-      fecha: new Date(),
-      edad,
+    return setUser({
+      fecha: user.fecha,
+      edad: user.edad + 1,
+      nombre: user.nombre,
+      apellidos: user.apellidos,
     });
   };
-
-  useEffect(() => {
-    setInterval(() => tick(), 1000);
-  });
 
   return (
     <div>
